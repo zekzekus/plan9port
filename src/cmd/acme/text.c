@@ -938,6 +938,29 @@ texttype(Text *t, Rune r)
 	if(r=='\n' && t->w!=nil)
 		wincommit(t->w, t);
 	t->iq1 = t->q0;
+    /*me*/
+    if (r=='(') {
+        typecommit(t);
+        texttype(t, ')');
+        typecommit(t);
+        if(t->q0 > 0)
+			textshow(t, t->q0-1, t->q0-1, TRUE);
+    }
+    if (r=='{') {
+        typecommit(t);
+        texttype(t, '}');
+        typecommit(t);
+        if(t->q0 > 0)
+			textshow(t, t->q0-1, t->q0-1, TRUE);
+    }
+    if (r=='[') {
+        typecommit(t);
+        texttype(t, ']');
+        typecommit(t);
+        if(t->q0 > 0)
+			textshow(t, t->q0-1, t->q0-1, TRUE);
+    }
+    /*me*/
 }
 
 void
